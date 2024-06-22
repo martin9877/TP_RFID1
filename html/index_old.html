@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de MySQL</title>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:5000/data');
+                const data = await response.json();
+                const tableBody = document.getElementById('table-body');
+                tableBody.innerHTML = '';
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    for (const key in row) {
+                        const td = document.createElement('td');
+                        td.textContent = row[key];
+                        tr.appendChild(td);
+                    }
+                    tableBody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function startFetching() {
+            fetchData();
+            setInterval(fetchData, 3000);
+        }
+    </script>
+</head>
+<body onload="startFetching()">
+    <h1>Registro de Ingresos</h1>
+    <table border="1">
+        <thead>       <!--agrego un comentario para hacer una prueba de commit en github-->
+            <tr>
+                
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>ID</th>
+                <th>Tiempo</th>
+                <!-- Agrega más encabezados según sea necesario -->
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Las filas de datos se llenarán aquí -->
+        </tbody>
+    </table>
+</body>
+</html>
