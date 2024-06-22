@@ -14,7 +14,7 @@
 # Values that contain spaces should be placed between quotes (\" \").
 #
 # Note:
-#
+#   1
 # Use doxygen to compare the used configuration file with the template
 # configuration file:
 # doxygen -x [configFile]
